@@ -1,0 +1,205 @@
+:root {
+    --primary-color: #2c3e50; /* Dark Blue/Grey */
+    --secondary-color: #34495e; /* Lighter Blue/Grey */
+    --accent-color: #3498db; /* Bright Blue */
+    --background-color: #f8f9fa; /* Very Light Grey */
+    --text-color: #333;
+    --header-font: 'Roboto Slab', serif;
+    --body-font: 'Lato', sans-serif;
+}
+
+body {
+    font-family: var(--body-font);
+    line-height: 1.7;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 2rem;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 2rem 3rem;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.07);
+    border-radius: 8px;
+}
+
+/* --- HEADER (Main Page) --- */
+.main-header {
+    text-align: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    margin-bottom: 2.5rem;
+}
+
+.main-header h1 {
+    font-family: var(--header-font);
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.main-header .tagline {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    margin: 0.25rem 0 1rem 0;
+}
+
+.header-contact {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    font-style: normal;
+}
+
+.header-contact a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.header-contact a:hover {
+    text-decoration: underline;
+}
+
+/* --- PROJECT GRID (Main Page) --- */
+#projects h2 {
+    font-family: var(--header-font);
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.project-card {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-decoration: none;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.project-card .card-title {
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: #fff;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.project-card h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-family: var(--body-font);
+    font-weight: 700;
+}
+
+/* --- PROJECT DETAIL PAGES --- */
+.project-header {
+    margin-bottom: 2rem;
+}
+
+.back-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.project-detail h1 {
+    font-family: var(--header-font);
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin: 0 0 0.25rem 0;
+}
+
+.project-date {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.project-main-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.project-detail section {
+    margin-bottom: 2.5rem;
+}
+
+.project-detail h2 {
+    font-family: var(--header-font);
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.project-detail ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 768px) {
+    body {
+        padding: 0.5rem;
+    }
+    
+    .container {
+        padding: 1.5rem;
+    }
+
+    .header-contact {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-detail ul {
+        grid-template-columns: 1fr;
+    }
+}
