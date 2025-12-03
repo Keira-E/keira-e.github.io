@@ -18,21 +18,98 @@
             <h1>Power Localization & Supervisory for PoE Edge AI Applications</h1>
             <p class="project-date">June 2024 – Present</p>
             <img src="https://placehold.co/1200x600/f1c40f/ffffff?text=PoE+System+Block+Diagram" alt="Block diagram of the PoE system" class="project-main-image">
+
+            <section class="project-summary">
+                <h2>At a Glance</h2>
+                <dl class="project-meta">
+                    <div>
+                        <dt>Context</dt>
+                        <dd>Professional R&amp;D, industrial edge AI systems</dd>
+                    </div>
+                    <div>
+                        <dt>Role</dt>
+                        <dd>Lead hardware designer &amp; system architect</dd>
+                    </div>
+                    <div>
+                        <dt>Application</dt>
+                        <dd>Power and network distribution for remote AI compute nodes (up to 100 m)</dd>
+                    </div>
+                    <div>
+                        <dt>Core Technologies</dt>
+                        <dd>IEEE 802.3bt PoE, high-power PSE/PD design, AC/DC conversion, Raspberry Pi supervisory control, MQTT</dd>
+                    </div>
+                    <div>
+                        <dt>Status</dt>
+                        <dd>Functional prototypes under evaluation for deployment</dd>
+                    </div>
+                </dl>
+            </section>
             
             <section>
                 <h2>Project Overview</h2>
-                <p>Developed a robust Power over Ethernet (PoE) system compliant with the IEEE 802.3bt standard. This system is engineered for resilient, distributed AI deployments, enabling safe and efficient power delivery up to 100 meters over a single Ethernet cable. A key innovation is its localized AC/DC conversion and supervisory control, which enhances the reliability and scalability of edge AI hardware in challenging environments.</p>
+                <p>
+                    This system provides a standards-compliant IEEE 802.3bt Power over Ethernet (PoE) backbone for distributed edge AI deployments.
+                    It localizes high-voltage AC/DC conversion at an accessible location and fans out multiple high-power PoE channels that can safely
+                    deliver power and data over 100 m of cable to AI compute nodes installed in harsh or inaccessible environments.
+                </p>
+                <p>
+                    I owned the full technical lifecycle: standards review, requirements definition, PoE architecture, PCB design, embedded supervisory
+                    implementation, and test planning. The design emphasizes safety, maintainability, and field-debuggability so that non-specialist
+                    technicians can deploy and manage complex AI hardware without modifying mains wiring.
+                </p>
+            </section>
+
+            <section>
+                <h2>System Architecture & Design Decisions</h2>
+                <p>
+                    The core of the system is a high-power PoE Power Sourcing Equipment (PSE) fed from a 54 V AC/DC supply. Each port negotiates its power
+                    budget with a downstream Powered Device (PD) via IEEE 802.3bt classification before enabling power delivery. The architecture was chosen
+                    to:
+                </p>
+                <ul>
+                    <li>Keep mains voltage confined to a single, controlled enclosure.</li>
+                    <li>Provide scalable, multi-port power distribution to remote AI compute nodes.</li>
+                    <li>Support long cable runs while preserving power integrity and safety margins.</li>
+                </ul>
+                <p>
+                    A Raspberry Pi supervisory controller monitors PSE status over a management interface and exposes per-port controls (enable/disable,
+                    reset, power budget monitoring). I implemented a lightweight Python + MQTT stack so operators can remotely cycle power to individual AI
+                    nodes, retrieve fault data, and integrate status into higher-level observability systems.
+                </p>
+                <p>
+                    An important design challenge was attaching non-PoE local peripherals (such as additional sensing or control boards) to the 54 V rail
+                    feeding the PSE without disturbing the PSE’s signature and classification process. I resolved this by isolating these peripherals behind
+                    an optocoupler-controlled 12 V rail that only connects after PoE negotiation is complete, preserving the correct impedance profile at
+                    startup.
+                </p>
+            </section>
+
+            <section>
+                <h2>Verification & Research Angle</h2>
+                <p>
+                    I designed a test harness that emulates multiple PDs with configurable class signatures and load profiles so that the PSE’s negotiation,
+                    fault behavior, and thermal performance could be characterized without relying on final AI hardware. This allowed structured experiments
+                    on:
+                </p>
+                <ul>
+                    <li>Behavior under marginal cable conditions (length, gauge, and fault injection).</li>
+                    <li>Transient response when repeatedly cycling high-power ports.</li>
+                    <li>Corner cases in multi-port power budgeting and overload protection.</li>
+                </ul>
+                <p>
+                    The project provides a platform for future research on resilient power delivery for distributed AI systems, including adaptive power
+                    budgeting, condition-based maintenance using telemetry, and integration with higher-level orchestration of compute resources.
+                </p>
             </section>
 
             <section>
                 <h2>Key Features & Technologies</h2>
                 <ul>
-                    <li>Power over Ethernet (PoE) - IEEE 802.3bt</li>
-                    <li>Power Electronics (AC/DC Conversion)</li>
-                    <li>Edge AI Hardware Systems</li>
-                    <li>Supervisory Control Systems</li>
-                    <li>High-Reliability Power Delivery</li>
-                    <li>Distributed Systems Design</li>
+                    <li>IEEE 802.3bt-compliant multi-port PSE design with centralized 54 V AC/DC conversion.</li>
+                    <li>Supervisory control using Raspberry Pi with Python- and MQTT-based management stack.</li>
+                    <li>Isolated local peripheral rail that preserves PoE startup signatures and classification.</li>
+                    <li>Test harness for emulating PDs and validating multi-port negotiation and fault behavior.</li>
+                    <li>Scalable architecture for powering remote edge AI compute nodes over 100 m cable runs.</li>
                 </ul>
             </section>
         </main>
