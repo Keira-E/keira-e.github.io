@@ -18,22 +18,87 @@
             <h1>Power Controller PCB for High-Power Industrial Edge AI Applications</h1>
             <p class="project-date">June 2023 – Present</p>
             <img src="https://placehold.co/1200x600/e67e22/ffffff?text=3D+Render+of+PCB+(KiCAD)" alt="3D Render of the custom power controller PCB" class="project-main-image">
-            
+
+            <section class="project-summary">
+                <h2>At a Glance</h2>
+                <dl class="project-meta">
+                    <div>
+                        <dt>Context</dt>
+                        <dd>Professional R&amp;D, underwater edge AI system for fish behavior monitoring</dd>
+                    </div>
+                    <div>
+                        <dt>Role</dt>
+                        <dd>Lead hardware designer, embedded firmware developer, test lead</dd>
+                    </div>
+                    <div>
+                        <dt>Power Level</dt>
+                        <dd>~200 W distribution over 100 m cabling plus high-current LED driving</dd>
+                    </div>
+                    <div>
+                        <dt>Core Technologies</dt>
+                        <dd>STM32 MCU, multi-stage DC-DC conversion, constant-current LED drivers, EMI-conscious layout</dd>
+                    </div>
+                    <div>
+                        <dt>Status</dt>
+                        <dd>Deployed in subsea production systems</dd>
+                    </div>
+                </dl>
+            </section>
+
             <section>
                 <h2>Project Overview</h2>
-                <p>Designed, fabricated, and validated a custom Printed Circuit Board (PCB) to power and control an AI-driven underwater computer vision system for monitoring fish behavior. This complex board integrates an STM32 microcontroller for primary control, multiple DC-DC converters for efficient power regulation, UART/I2C communication interfaces, and high-voltage LED drivers for imaging. Significant effort was dedicated to EMI mitigation and thermal management to ensure reliable operation in harsh industrial environments.</p>
+                <p>
+                    This custom power controller is the primary electronics platform for an underwater computer vision system that monitors fish behavior.
+                    It receives high-voltage DC over long cable runs, generates regulated rails for an edge AI compute module, and drives high-power
+                    illumination LEDs with tightly controlled timing and current profiles.
+                </p>
+                <p>
+                    I owned the end-to-end design: requirements capture, power architecture, schematics and layout in KiCad, firmware for the STM32
+                    microcontroller, and structured verification including EMI and thermal characterization.
+                </p>
             </section>
-            
+
+            <section>
+                <h2>Power Architecture & LED Control</h2>
+                <p>
+                    To meet both power and signal integrity constraints over 100 m of cabling, the system uses a high-voltage input rail feeding several
+                    cascaded DC-DC stages:
+                </p>
+                <ul>
+                    <li>High-voltage input rail &rarr; intermediate 12 V rail for compute and auxiliary electronics.</li>
+                    <li>Dedicated LED rails driving constant-current LED driver ICs for high-intensity illumination.</li>
+                    <li>Low-voltage logic rail for the STM32 and digital interfaces.</li>
+                </ul>
+                <p>
+                    The STM32 supervises system power states, monitors fault conditions, and generates LED control signals via a parallel SPI interface to
+                    multiple LED driver channels. This enables precise control of brightness and timing in synchronization with the AI compute pipeline.
+                </p>
+            </section>
+
+            <section>
+                <h2>Robustness, EMI, and Field Diagnostics</h2>
+                <p>
+                    The PCB layout and component selection were guided by EMI, thermal, and maintainability constraints. Key decisions include:
+                </p>
+                <ul>
+                    <li>Segregated high-current and low-noise regions with controlled return paths.</li>
+                    <li>Use of solid-state switching elements and e-fusing for protection and reliability.</li>
+                    <li>Careful placement of bulk and local decoupling to handle long cable transients.</li>
+                </ul>
+                <p>
+                    On-board diagnostic LEDs and test points were added to support rapid field troubleshooting, allowing technicians to quickly determine
+                    whether issues originate in power distribution, LED channels, or communications.
+                </p>
+            </section>
+
             <section>
                 <h2>Key Features & Technologies</h2>
                 <ul>
-                    <li>Custom PCB Design (KiCAD)</li>
-                    <li>STM32 Microcontroller</li>
-                    <li>Power Electronics (DC-DC Converters)</li>
-                    <li>EMI Mitigation & Thermal Management</li>
-                    <li>Serial Communication (UART, I2C)</li>
-                    <li>High-Voltage LED Drivers</li>
-                    <li>Edge AI & Computer Vision</li>
+                    <li>Multi-rail power architecture for compute, control, and high-power LED driving.</li>
+                    <li>STM32-based supervisory control and LED timing management.</li>
+                    <li>EMI-aware PCB layout for long cable runs in industrial environments.</li>
+                    <li>Integrated protections: e-fuses, solid-state switches, and structured fault handling.</li>
+                    <li>Deployed as part of a commercial subsea edge AI system.</li>
                 </ul>
             </section>
         </main>
