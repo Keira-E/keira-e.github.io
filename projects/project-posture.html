@@ -18,26 +18,89 @@
             <h1>Posture Assessment via Hall-Effect Sensors</h1>
             <p class="project-date">January 2021 – May 2021</p>
             <img src="https://placehold.co/1200x600/1abc9c/ffffff?text=Analog+Switch+System+Diagram" alt="Diagram of the hall-effect sensor system" class="project-main-image">
-            
+
+            <section class="project-summary">
+                <h2>At a Glance</h2>
+                <dl class="project-meta">
+                    <div>
+                        <dt>Context</dt>
+                        <dd>Undergraduate design course project (ENGI 2203)</dd>
+                    </div>
+                    <div>
+                        <dt>Role</dt>
+                        <dd>Analog front-end architect &amp; co-designer</dd>
+                    </div>
+                    <div>
+                        <dt>Application</dt>
+                        <dd>Real-time seated posture assessment with user feedback</dd>
+                    </div>
+                    <div>
+                        <dt>Core Technologies</dt>
+                        <dd>Hall-effect sensing, analog multiplexing, microcontroller interfacing, ergonomic prototyping</dd>
+                    </div>
+                    <div>
+                        <dt>Team</dt>
+                        <dd>4 students, collaborative hardware and firmware development</dd>
+                    </div>
+                </dl>
+            </section>
+
             <section>
                 <h2>Project Overview</h2>
-                <p>In a collaborative team setting, I co-designed a device that detects when a user is sitting with improper posture and provides an alert to prompt correction. My primary contribution was inventing and implementing a unique analog switch system. This system used foam-embedded Hall-effect sensors to discreetly detect pressure distribution from where the user was sitting and send detailed feedback to a microcontroller for analysis.</p>
+                <p>
+                    This project explored how low-cost magnetic sensing can be used to monitor seated posture without intrusive hardware on the user.
+                    The system embeds Hall-effect sensors beneath a foam seat and uses changes in magnetic field strength as a proxy for pressure distribution.
+                    When the user slouches or shifts into a poor posture state, the device generates an alert to encourage correction.
+                </p>
+                <p>
+                    My primary contribution was the design and implementation of a compact analog switching and measurement subsystem that allows a single
+                    microcontroller to interrogate multiple Hall-effect sensors while maintaining adequate resolution and response time.
+                </p>
+            </section>
+
+            <section>
+                <h2>Sensing Architecture & Analog Design</h2>
+                <p>
+                    The seat contains an array of magnets and Hall-effect sensors arranged so that vertical displacement and load changes map onto measurable
+                    differences in sensor output. I designed an analog multiplexing network that:
+                </p>
+                <ul>
+                    <li>Sequentially connects individual Hall-effect sensors to a shared ADC input.</li>
+                    <li>Maintains signal integrity across channels using appropriate source impedance and filtering.</li>
+                    <li>Fits within the voltage and current constraints of the chosen microcontroller.</li>
+                </ul>
+                <p>
+                    Care was taken to ensure that the sensor outputs remained within a linear operating region and that crosstalk between channels was
+                    minimized. This enabled the microcontroller to reconstruct a coarse “pressure map” of the seat using only a handful of analog resources.
+                </p>
+            </section>
+
+            <section>
+                <h2>Embedded Processing & Feedback</h2>
+                <p>
+                    On the firmware side, the microcontroller cycles through the sensor array, digitizes readings, and computes posture metrics based on
+                    relative loading across regions (e.g., forward lean, lateral tilt, and slouching). Thresholds and simple heuristics are used to determine
+                    whether the user is within an acceptable posture envelope.
+                </p>
+                <p>
+                    The device provides immediate feedback through LEDs and audio cues, closing the loop between sensing and behavior. This architecture
+                    could be extended with more advanced algorithms or machine learning models to classify posture states more precisely.
+                </p>
             </section>
 
             <section>
                 <h2>Key Features & Technologies</h2>
                 <ul>
-                    <li>Analog Circuit Design</li>
-                    <li>Hall-Effect Sensors</li>
-                    <li>Microcontroller Integration</li>
-                    <li>System Prototyping</li>
-                    <li>Collaborative Design</li>
-                    <li>Ergonomic Sensing</li>
+                    <li>Embedded Hall-effect sensor array for non-intrusive posture monitoring.</li>
+                    <li>Custom analog multiplexing front-end for multi-sensor acquisition.</li>
+                    <li>Microcontroller-based real-time processing of pressure distribution data.</li>
+                    <li>Seat-embedded form factor designed for everyday ergonomic use.</li>
+                    <li>Team-based hardware and firmware development workflow.</li>
                 </ul>
             </section>
         </main>
         <footer>
-            <p>&copy; 2025 Keira Ellefsen</p>
+            <p>&copy; 2025 Keira E</p>
         </footer>
     </div>
 </body>
